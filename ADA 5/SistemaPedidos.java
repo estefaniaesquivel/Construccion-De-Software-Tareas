@@ -1,6 +1,7 @@
 /**
  * descomposicion de procedimientos: se cumple dividiendo el método procesarPedido 
  * en metodos como calcularDescuento(), calcularCostoEnvio(), imprimirResumen()
+ * se dividió el método procesarPedido y lo dividimos en esos tres métodos privados 
  * 
  * cláusulas de guarda: se logra colocando validaciones al inicio de 
  * procesarPedido con montoTotal <= 0, tipoCliente == null 
@@ -37,6 +38,8 @@ public class SistemaPedidos {
         double descuento = calcularDescuento(tipoCliente, montoTotal, esDiaEspecial); //descomposicion de procedimiento
         double costoEnvio = calcularCostoEnvio(destino, montoTotal); //descomposicion de procedimiento
         double totalFinal = montoTotal - descuento + costoEnvio; //descomposicion de procedimiento
+        //son double porque trabajan con el total del descuento calculado
+        //estos atributos están dentro de procesarPedido porque el método es como un coordinador principal de la operacion
 
         // sin banderas booleanas
         if (totalFinal > 0) {
@@ -46,7 +49,8 @@ public class SistemaPedidos {
         }
     }
 
-    // método para calcular el descuento según el tipo de cliente y día especial
+    // método para calcular el descuento, ya que se diviio procesar pedido en otras funciones, se cumple
+    //el principio de responsabilidad unica
     private double calcularDescuento(String tipoCliente, double montoTotal, boolean esDiaEspecial) {
         double descuentoBase = switch (tipoCliente) {
             case "REGULAR" -> (montoTotal > 1000) ? montoTotal * 0.05 : 0.0;
