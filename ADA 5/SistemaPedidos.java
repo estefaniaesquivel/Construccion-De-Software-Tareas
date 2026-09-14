@@ -42,6 +42,8 @@ public class SistemaPedidos {
         //estos atributos están dentro de procesarPedido porque el método es como un coordinador principal de la operacion
 
         // sin banderas booleanas
+        //se quitó if (totalFinal > 0) { aprobado = true; ya que no ayuda en nada
+        //guardar un estado intermedio cuando se puede evaluar totalFinal > 0 directamente
         if (totalFinal > 0) {
             imprimirResumen(montoTotal, descuento, costoEnvio, totalFinal);
         } else {
@@ -49,7 +51,7 @@ public class SistemaPedidos {
         }
     }
 
-    // método para calcular el descuento, ya que se diviio procesar pedido en otras funciones, se cumple
+    // método para calcular el descuento, ya que se diviio procesarPedido en otras funciones, se cumple
     //el principio de responsabilidad unica
     private double calcularDescuento(String tipoCliente, double montoTotal, boolean esDiaEspecial) {
         double descuentoBase = switch (tipoCliente) {
