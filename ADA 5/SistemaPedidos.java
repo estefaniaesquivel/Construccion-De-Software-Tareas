@@ -34,9 +34,9 @@ public class SistemaPedidos {
         }
 
         
-        double descuento = calcularDescuento(tipoCliente, montoTotal, esDiaEspecial);
-        double costoEnvio = calcularCostoEnvio(destino, montoTotal);
-        double totalFinal = montoTotal - descuento + costoEnvio;
+        double descuento = calcularDescuento(tipoCliente, montoTotal, esDiaEspecial); //descomposicion de procedimiento
+        double costoEnvio = calcularCostoEnvio(destino, montoTotal); //descomposicion de procedimiento
+        double totalFinal = montoTotal - descuento + costoEnvio; //descomposicion de procedimiento
 
         // sin banderas booleanas
         if (totalFinal > 0) {
