@@ -46,8 +46,8 @@ public class SistemaPedidos {
         //estos atributos están dentro de procesarPedido porque el método es como un coordinador principal de la operacion
 
         // sin banderas booleanas
-        //se quitó if (totalFinal > 0) { aprobado = true; ya que no ayuda en nada
-        //guardar un estado intermedio cuando se puede evaluar totalFinal > 0 directamente
+        //se quitó si totalFinal > 0 entonces aprobado = true; ya que no tiene utilidad 
+        // guardar un estado intermedio cuando se puede evaluar totalFinal > 0 directamente
         if (totalFinal > 0) {
             imprimirResumen(montoTotal, descuento, costoEnvio, totalFinal);
         } else {
