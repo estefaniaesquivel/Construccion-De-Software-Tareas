@@ -5,6 +5,8 @@
  * 
  * cláusulas de guarda: se logra colocando validaciones al inicio de 
  * procesarPedido con montoTotal <= 0, tipoCliente == null 
+ * se puso otra dentro de la función de calcular costo de envio
+ * por sino se especifica el destino, entonces ya no se ejecuta
  * 
  * simplificación condicional: Se logra cambiando los if-else anidados 
  * por switch expressions (o switch estándar) dentro de los nuevos métodos
