@@ -8,6 +8,8 @@
  * 
  * simplificación condicional: Se logra cambiando los if-else anidados 
  * por switch expressions (o switch estándar) dentro de los nuevos métodos
+ * para los tipos de cliente y su respectivo descuento se creó la variable descuentoBase asignada al switch  
+ * 
  * 
  * eliminar banderas booleanas: se logra eliminando la variable aprobado
  * 
@@ -53,20 +55,26 @@ public class SistemaPedidos {
 
     // método para calcular el descuento, ya que se diviio procesarPedido en otras funciones, se cumple
     //el principio de responsabilidad unica
+    //El tipo de switch que se asigna a una variable se conoce 
+    //como switch expression, y su sintaxis utiliza flechas (->)
     private double calcularDescuento(String tipoCliente, double montoTotal, boolean esDiaEspecial) {
-        double descuentoBase = switch (tipoCliente) {
-            case "REGULAR" -> (montoTotal > 1000) ? montoTotal * 0.05 : 0.0;
+        double descuentoBase = switch (tipoCliente) { //se usa un switch que evalúa la variable tipoCliente y asigna el resultado directamente a descuentoBase
+            case "REGULAR" -> (montoTotal > 1000) ? montoTotal * 0.05 : 0.0; //si la compra supera $1000, asigna un 5% de descuento, de lo contrario, asigna $0
+            //yield es una palabra reservada en Java que se usa dentro de una switch expression
+            //para devolver un valor, deteniendo la evaluación de ese caso en particular.
+            //un return o break se saldría de todo el método. En cambio yield solo sale del switch, 
+            // depositando el valor directamente en la variable descuentoBase
             case "CLIENTE_VIP" -> {
-                if (montoTotal > 2000) yield montoTotal * 0.20;
+                if (montoTotal > 2000) yield montoTotal * 0.20; //si cumple, entrega este valor y sale del switch
                 if (montoTotal > 1000) yield montoTotal * 0.15;
-                yield montoTotal * 0.10;
+                yield montoTotal * 0.10; //si no cumplió ninguna, entrega este último
             }
             case "NUEVO" -> 50.0;
-            default -> 0.0;
+            default -> 0.0; //si el tipo de cliente no coincide con ningún caso anterior, el descuento base es $0
         };
 
         if (esDiaEspecial) {
-            descuentoBase += (montoTotal * 0.05);
+            descuentoBase += (montoTotal * 0.05); //toma el valor de descuentoBase que se calculo en el switch y le suma al descuento un 5% del montoTotal
         }
 
         return descuentoBase;
@@ -74,12 +82,16 @@ public class SistemaPedidos {
 
     // simplificación de las estructuras condicionales usando switch
     private double calcularCostoEnvio(String destino, double montoTotal) {
-        if (destino == null) return 0.0;
-
+        //aquí hay otra claúsula de guarda
+        if (destino == null){ //sino se especifica el destino ya no se ejecuta, devuelve 0.0 ya que como es double así lo exige el método
+            return 0.0;
+        } 
+        //el switch devuelve (return) directamente el valor que resulte de la coincidencia
+        //así se puede ahorrar declarar la variable costo
         return switch (destino) {
             case "LOCAL" -> 50.0;
-            case "NACIONAL", "MEXICO" -> (montoTotal > 1500) ? 0.0 : 150.0;
-            case "INTERNACIONAL" -> (montoTotal > 3000) ? 100.0 : 500.0;
+            case "NACIONAL", "MEXICO" -> (montoTotal > 1500) ? 0.0 : 150.0; //si se cumple que el total es más de 1500 el envio es gratis, si no son 150
+            case "INTERNACIONAL" -> (montoTotal > 3000) ? 100.0 : 500.0; //si es más de 3000 cobra 100, si no cuesta 500
             default -> 0.0;
         };
     }
