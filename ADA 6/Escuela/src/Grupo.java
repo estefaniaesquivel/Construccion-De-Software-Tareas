@@ -22,7 +22,7 @@ public class Grupo {
         this.profesor = profesor;
     }
 
-    public List<Alumno> getAlumnos() {
+    public List<Alumno> getAlumnos() { //es list ya que permite agregar o quitar alumnos libremente sin limitarte a una cantidad fija como ocurre con un arreglo tradicional
         return alumnos;
     }
 
