@@ -20,7 +20,7 @@ public class Cliente {
         return comprasRealizadas > 5;
     }
 
-    //se elimino la otra funcion y se puso el resltado de esa en la funcion que imorta
+    //se elimino la otra funcion masDeCincoCompras y se puso el resltado de esa en la funcion que imorta
 
    
 }
