@@ -29,6 +29,20 @@ public class CalculadoraEnvio {
     private double descuento = 0;
 
 
+    //igualmente cambiamos los numeros magicos
+
+    private static final double TARIFA_PESO = 8.0;
+    private static final double TARIFA_DISTANCIA = 2.5;
+
+    private static final double RECARGO_URGENTE = 0.50;
+
+    private static final double MIN_PESO_DESCUENTO = 1.0;
+    private static final double DESC_PESO_LIGERO = 10.0;
+    private static final double DESC_CLIENTE_FRECUENTE = 15.0;
+
+    private static final double COSTO_MINIMO = 20.0;
+
+
 
     //faltaba constructor
     public CalculadoraEnvio(Pedido pedido, double distanciaKm, boolean urgente) {
@@ -54,28 +68,28 @@ public class CalculadoraEnvio {
     }
 
     private void calcularCostos() {
-        costoPorPeso = pesoTotal * 8;
-        costoPorDistancia = distanciaKm * 2.5;
+        costoPorPeso = pesoTotal * TARIFA_PESO;
+        costoPorDistancia = distanciaKm * TARIFA_DISTANCIA;
     }
 
     private void calcularRecargo() {
         if (urgente) {
-            recargo = (costoBase + costoPorPeso + costoPorDistancia) * 0.5;
+            recargo = (costoBase + costoPorPeso + costoPorDistancia) * RECARGO_URGENTE;
         }
     }
 
     private void calcularDescuento() {
-        if (pesoTotal < 1) {
-            descuento = 10;
+        if (pesoTotal < MIN_PESO_DESCUENTO) {
+            descuento = DESC_PESO_LIGERO;
         }
         if (pedido.getCliente().esFrecuente()) {
-            descuento += 15;
+            descuento += DESC_CLIENTE_FRECUENTE;
         }
     }
 
     private double calcularTotalFinal() {
         double total = costoBase + costoPorPeso + costoPorDistancia + recargo - descuento;
-        return Math.max(total, 20); // Aplica el mínimo de 20
+        return Math.max(total, COSTO_MINIMO); // Aplica el mínimo de 20
     }
 
     //Ahora la funcion principal se reduce a esta chica:
