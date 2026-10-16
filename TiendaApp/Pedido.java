@@ -75,13 +75,19 @@ public class Pedido {
         return esClienteFrecuenteValido || esEnvioLocalMeridaValido;
     }
 
-    // REMOVE ASSIGNMENTS TO PARAMETERS
+    /* REMOVE ASSIGNMENTS TO PARAMETERS
+    Se reasignaban valores directamente a los parámetros de entrada (porcentaje y monto),pero consideramos que es una mala 
+    práctica porque destruye el valor original pasado por la llamada. Para solucionarlo, se crearon variables locales 
+    (porcentajeEfectivo y montoFinal) que realizan las modificaciones y cálculos de forma segura sin alterar las variables originales.
+    */
     public double aplicarDescuento(double monto, int porcentaje) {
-        if (porcentaje > 50) {
-            porcentaje = 50;
+        int porcentajeEfectivo = porcentaje;
+        if (porcentajeEfectivo > 50) {
+            porcentajeEfectivo = 50;
         }
-        monto = monto - (monto * porcentaje / 100);
-        return monto;
+
+        double montoFinal = monto - (monto * porcentajeEfectivo / 100.0);
+        return montoFinal;
     }
 
     /* EXTRACT METHOD
