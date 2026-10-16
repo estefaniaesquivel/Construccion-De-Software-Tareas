@@ -21,6 +21,9 @@ public class Pedido {
     }
 
     // REPLACE TEMP WITH QUERY
+    /* se extrajo el cálculo del subtotal metido en una variable temporal, a un método separado (calcularSubtotal()) y
+    se reemplazó el uso de la variable por la consulta a dicho método. Esto elimina variables locales innecesarias, evita 
+    repetir código en otras partes de la clase y hace que el método principal sea más limpio y fácil de mantener.*/
     private double calcularSubtotal() {
         double subtotal = 0;
         for (ItemPedido item : items) {
