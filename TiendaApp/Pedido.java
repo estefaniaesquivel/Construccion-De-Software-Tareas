@@ -21,6 +21,7 @@ public class Pedido {
     }
 
     // REPLACE TEMP WITH QUERY
+    private double calcularSubtotal() {
         double subtotal = 0;
         for (ItemPedido item : items) {
             subtotal = subtotal + item.getProducto().getPrecio() * item.getCantidad();
