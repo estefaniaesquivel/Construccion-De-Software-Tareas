@@ -56,21 +56,23 @@ public class Pedido {
     // INLINE TEMP
     //Se hizo cambio el return ya que era innecesaria la variable temporal
     public boolean requiereRevision() {
- 
+
         return calcularTotal > 5000;
     }
 
     // INTRODUCE EXPLAINING VARIABLE
+    // Problema: La condición para determinar el envío gratuito contenía una expresión booleana compleja y difícil de interpretar a simple vista.
+    // REFACTOR: Se introdujeron variables explicativas (esClienteFrecuenteValido y esEnvioLocalMeridaValido) para descomponer la lógica en reglas de negocio claras.
     public boolean tieneEnvioGratis() {
         double sub = 0;
         for (ItemPedido item : items) {
             sub = sub + item.getProducto().getPrecio() * item.getCantidad();
         }
-        if (cliente.getComprasRealizadas() > 5 && sub > 500
-                || cliente.getCiudad().equals("Merida") && sub > 300 && items.size() > 2) {
-            return true;
-        }
-        return false;
+
+        boolean esClienteFrecuenteValido = cliente.getComprasRealizadas() > 5 && sub > 500;
+        boolean esEnvioLocalMeridaValido = cliente.getCiudad().equals("Merida") && sub > 300 && items.size() > 2;
+
+        return esClienteFrecuenteValido || esEnvioLocalMeridaValido;
     }
 
     // REMOVE ASSIGNMENTS TO PARAMETERS
@@ -83,8 +85,8 @@ public class Pedido {
     }
 
     /* EXTRACT METHOD
-    dado a que el método por sí solo, imprime todos los resultados, se crearon tres funciones más, 
-    donde cada funcion realiza una impresión específica de cada cosa, se extrajo las secciones del 
+    dado a que el método por sí solo, imprime todos los resultados, se crearon tres funciones más,
+    donde cada funcion realiza una impresión específica de cada cosa, se extrajo las secciones del
     reporte en métodos auxiliares, quedando los 3 métodos que se llaman en imprimirFactura*/
     public void imprimirFactura() {
         imprimirEncabezado();
