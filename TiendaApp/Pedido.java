@@ -78,24 +78,32 @@ public class Pedido {
     }
 
     // EXTRACT METHOD
+    // REFACTOR: Extraídas las secciones del reporte en métodos auxiliares (imprimirEncabezado, imprimirDetalle, imprimirTotales)
     public void imprimirFactura() {
-        // Encabezado
+        imprimirEncabezado();
+        imprimirDetalle();
+        imprimirTotales();
+    }
+
+    private void imprimirEncabezado() {
         System.out.println("=============================");
-        System.out.println("        FACTURA              ");
+        System.out.println("         FACTURA             ");
         System.out.println("=============================");
         System.out.println("Cliente: " + cliente.getNombre());
         System.out.println("Ciudad: " + cliente.getCiudad());
         System.out.println("-----------------------------");
+    }
 
-        // Detalle
+    private void imprimirDetalle() {
         for (ItemPedido item : items) {
             double importe = item.getProducto().getPrecio() * item.getCantidad();
             System.out.println(item.getProducto().getNombre() + " x" + item.getCantidad()
                     + " = $" + importe);
         }
         System.out.println("-----------------------------");
+    }
 
-        // Totales y envio
+    private void imprimirTotales() {
         CalculadoraEnvio calculadora = new CalculadoraEnvio();
         double envio = tieneEnvioGratis() ? 0 : calculadora.calcularCostoEnvio(this, distanciaKm, false);
         System.out.println("Envio: $" + envio);
