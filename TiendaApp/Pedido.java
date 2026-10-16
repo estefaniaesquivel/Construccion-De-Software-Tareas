@@ -81,8 +81,10 @@ public class Pedido {
         return monto;
     }
 
-    // EXTRACT METHOD
-    // REFACTOR: Extraídas las secciones del reporte en métodos auxiliares (imprimirEncabezado, imprimirDetalle, imprimirTotales)
+    /* EXTRACT METHOD
+    dado a que el método por sí solo, imprime todos los resultados, se crearon tres funciones más, 
+    donde cada funcion realiza una impresión específica de cada cosa, se extrajo las secciones del 
+    reporte en métodos auxiliares, quedando los 3 métodos que se llaman en imprimirFactura*/
     public void imprimirFactura() {
         imprimirEncabezado();
         imprimirDetalle();
