@@ -21,12 +21,15 @@ public class Pedido {
     }
 
     // REPLACE TEMP WITH QUERY
-    public double calcularTotal() {
         double subtotal = 0;
         for (ItemPedido item : items) {
             subtotal = subtotal + item.getProducto().getPrecio() * item.getCantidad();
         }
+        return subtotal;
+    }
 
+    public double calcularTotal() {
+        double subtotal = calcularSubtotal();
         double descuento = 0;
         if (subtotal > 1000) {
             descuento = subtotal * 0.10;
