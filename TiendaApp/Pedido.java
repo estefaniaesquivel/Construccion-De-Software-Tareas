@@ -56,34 +56,48 @@ public class Pedido {
     // INLINE TEMP
     //Se hizo cambio el return ya que era innecesaria la variable temporal
     public boolean requiereRevision() {
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 91f54eb1d9fbbce7f32d394f31d98f9a4166aeb7
         return calcularTotal > 5000;
     }
 
     // INTRODUCE EXPLAINING VARIABLE
+    // Problema: La condición para determinar el envío gratuito contenía una expresión booleana compleja y difícil de interpretar a simple vista.
+    // REFACTOR: Se introdujeron variables explicativas (esClienteFrecuenteValido y esEnvioLocalMeridaValido) para descomponer la lógica en reglas de negocio claras.
     public boolean tieneEnvioGratis() {
         double sub = 0;
         for (ItemPedido item : items) {
             sub = sub + item.getProducto().getPrecio() * item.getCantidad();
         }
-        if (cliente.getComprasRealizadas() > 5 && sub > 500
-                || cliente.getCiudad().equals("Merida") && sub > 300 && items.size() > 2) {
-            return true;
-        }
-        return false;
+
+        boolean esClienteFrecuenteValido = cliente.getComprasRealizadas() > 5 && sub > 500;
+        boolean esEnvioLocalMeridaValido = cliente.getCiudad().equals("Merida") && sub > 300 && items.size() > 2;
+
+        return esClienteFrecuenteValido || esEnvioLocalMeridaValido;
     }
 
-    // REMOVE ASSIGNMENTS TO PARAMETERS
+    /* REMOVE ASSIGNMENTS TO PARAMETERS
+    Se reasignaban valores directamente a los parámetros de entrada (porcentaje y monto),pero consideramos que es una mala 
+    práctica porque destruye el valor original pasado por la llamada. Para solucionarlo, se crearon variables locales 
+    (porcentajeEfectivo y montoFinal) que realizan las modificaciones y cálculos de forma segura sin alterar las variables originales.
+    */
     public double aplicarDescuento(double monto, int porcentaje) {
-        if (porcentaje > 50) {
-            porcentaje = 50;
+        int porcentajeEfectivo = porcentaje;
+        if (porcentajeEfectivo > 50) {
+            porcentajeEfectivo = 50;
         }
-        monto = monto - (monto * porcentaje / 100);
-        return monto;
+
+        double montoFinal = monto - (monto * porcentajeEfectivo / 100.0);
+        return montoFinal;
     }
 
-    // EXTRACT METHOD
-    // REFACTOR: Extraídas las secciones del reporte en métodos auxiliares (imprimirEncabezado, imprimirDetalle, imprimirTotales)
+    /* EXTRACT METHOD
+    dado a que el método por sí solo, imprime todos los resultados, se crearon tres funciones más,
+    donde cada funcion realiza una impresión específica de cada cosa, se extrajo las secciones del
+    reporte en métodos auxiliares, quedando los 3 métodos que se llaman en imprimirFactura*/
     public void imprimirFactura() {
         imprimirEncabezado();
         imprimirDetalle();
