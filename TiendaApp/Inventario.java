@@ -11,17 +11,21 @@ public class Inventario {
     }
 
     // SUBSTITUTE ALGORITHM
+    /*
+    Los cambios que se hicieron fueron que se eliminaron las siguientes variables:
+    Producto encontrado = null
+    boolean hallado = false
+    int i
+    Se reemplazó el ciclo while utilizando las variables ya eliminadas por un ciclo for que
+    analice cada producto de la lista de productos, de esta manera si se cumple la condición
+    se retorna el producto, de otra manera, si no se cumple retorna simplemente a null.
+     */
     public Producto buscarPorNombre(String nombre) {
-        Producto encontrado = null;
-        boolean hallado = false;
-        int i = 0;
-        while (i < productos.size() && hallado == false) {
-            if (productos.get(i).getNombre().equalsIgnoreCase(nombre)) {
-                encontrado = productos.get(i);
-                hallado = true;
+        for (Producto producto : productos) {
+            if (producto.getNombre().equalsIgnoreCase(nombre)) {
+                return producto;
             }
-            i = i + 1;
         }
-        return encontrado;
+        return null;
     }
 }
