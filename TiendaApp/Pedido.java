@@ -54,9 +54,10 @@ public class Pedido {
     }
 
     // INLINE TEMP
+    //Se hizo cambio el return ya que era innecesaria la variable temporal
     public boolean requiereRevision() {
-        double totalPedido = calcularTotal();
-        return totalPedido > 5000;
+ 
+        return calcularTotal > 5000;
     }
 
     // INTRODUCE EXPLAINING VARIABLE
