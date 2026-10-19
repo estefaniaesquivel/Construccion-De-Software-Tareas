@@ -69,8 +69,11 @@ public class Pedido {
     }
 
     // INTRODUCE EXPLAINING VARIABLE
-    // Problema: La condición para determinar el envío gratuito contenía una expresión booleana compleja y difícil de interpretar a simple vista.
-    // REFACTOR: Se introdujeron variables explicativas (esClienteFrecuenteValido y esEnvioLocalMeridaValido) para descomponer la lógica en reglas de negocio claras.
+    // Problema: La condición para determinar el envío gratuito contenía una expresión booleana compleja 
+    // y difícil de interpretar a simple vista.
+    // REFACTOR: Se introdujeron variables explicativas 
+    // (esClienteFrecuenteValido y esEnvioLocalMeridaValido) para descomponer 
+    // la lógica en reglas de negocio claras.
     public boolean tieneEnvioGratis() {
         double sub = 0;
         for (ItemPedido item : items) {
