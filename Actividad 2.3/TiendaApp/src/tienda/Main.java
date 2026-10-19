@@ -8,6 +8,7 @@ INTEGRANTES:
 •	Felipe de Jesús Cruz Sabido
 •	Herbert Alejandro Espejo Basto
 */
+
 public class Main {
     public static void main(String[] args) {
         Inventario inventario = new Inventario();

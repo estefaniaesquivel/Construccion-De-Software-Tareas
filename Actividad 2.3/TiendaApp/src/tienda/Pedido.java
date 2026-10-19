@@ -60,7 +60,7 @@ public class Pedido {
     //Se hizo cambio el return ya que era innecesaria la variable temporal
     public boolean requiereRevision() {
 
-        return calcularTotal > 5000;
+        return calcularTotal() > 5000;
     }
 
     // INTRODUCE EXPLAINING VARIABLE

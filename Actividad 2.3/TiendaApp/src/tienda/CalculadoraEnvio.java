@@ -2,8 +2,6 @@ package tienda;
 
 public class CalculadoraEnvio {
 
-
-
     // REPLACE METHOD WITH METHOD OBJECT
 
     //consideramos que lo mejor es remplazar las variables temporales por atributos de la clase
@@ -15,6 +13,16 @@ public class CalculadoraEnvio {
     objeto, de manera que todas las variables locales se
     conviertan en atributos de ese objeto*/
 
+    public CalculadoraEnvio() {
+    }
+
+    //Ahora la funcion principal se reduce a esta chica:
+    public double calcularCostoEnvio(Pedido pedido, double distanciaKm, boolean urgente) {
+        return new CalculadorCostoEnvio(pedido, distanciaKm, urgente).calcular();
+    }
+}
+
+class CalculadorCostoEnvio {
     //los parametros originales ahora son atributos
     private final Pedido pedido;
     private final double distanciaKm;
@@ -28,9 +36,7 @@ public class CalculadoraEnvio {
     private double recargo = 0;
     private double descuento = 0;
 
-
     //igualmente cambiamos los numeros magicos
-
     private static final double TARIFA_PESO = 8.0;
     private static final double TARIFA_DISTANCIA = 2.5;
 
@@ -42,10 +48,7 @@ public class CalculadoraEnvio {
 
     private static final double COSTO_MINIMO = 20.0;
 
-
-
-    //faltaba constructor
-    public CalculadoraEnvio(Pedido pedido, double distanciaKm, boolean urgente) {
+    public CalculadorCostoEnvio(Pedido pedido, double distanciaKm, boolean urgente) {
         this.pedido = pedido;
         this.distanciaKm = distanciaKm;
         this.urgente = urgente;
@@ -91,7 +94,4 @@ public class CalculadoraEnvio {
         double total = costoBase + costoPorPeso + costoPorDistancia + recargo - descuento;
         return Math.max(total, COSTO_MINIMO); 
     }
-
-
-
 }
