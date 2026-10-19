@@ -92,9 +92,9 @@ public class CalculadoraEnvio {
         return Math.max(total, COSTO_MINIMO); 
     }
 
-    //Ahora la funcion principal se reduce a esta chica:
-    public double calcularCostoEnvio(Pedido pedido, double distanciaKm, boolean urgente) {
-        return new CalculadorCostoEnvio(pedido, distanciaKm, urgente).calcular();
+    private double calcularTotalFinal() {
+        double total = costoBase + costoPorPeso + costoPorDistancia + recargo - descuento;
+        return Math.max(total, COSTO_MINIMO); 
     }
 
 
