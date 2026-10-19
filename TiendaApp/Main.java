@@ -1,5 +1,13 @@
 package tienda;
 
+/*
+INTEGRANTES:
+•	Agustín Emanuel Dzib Martínez
+•	Estefanía Esquivel Bacelis
+•	Axel Adolfo Morales Caro
+•	Felipe de Jesús Cruz Sabido
+•	Herbert Alejandro Espejo Basto
+*/
 public class Main {
     public static void main(String[] args) {
         Inventario inventario = new Inventario();

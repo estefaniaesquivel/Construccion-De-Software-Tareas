@@ -92,10 +92,6 @@ public class CalculadoraEnvio {
         return Math.max(total, COSTO_MINIMO); 
     }
 
-    private double calcularTotalFinal() {
-        double total = costoBase + costoPorPeso + costoPorDistancia + recargo - descuento;
-        return Math.max(total, COSTO_MINIMO); 
-    }
 
 
 }
