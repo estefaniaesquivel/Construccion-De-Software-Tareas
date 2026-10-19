@@ -44,16 +44,21 @@ public class Pedido {
         return subtotal - descuento + subtotal * 0.16;
     }
 
+    
     // SPLIT TEMPORARY VARIABLE
+    /*
+    Se reemplazó por completo la variable "temp" para utilizar "subtotal" para calcular
+    el subtotal e "iva" para calcular el IVA del subtotal
+     */
+    private static final double IVA = 0.16;
     public void mostrarResumenImpuestos() {
-        double temp = 0;
+        double subtotal = 0;
         for (ItemPedido item : items) {
-            temp = temp + item.getProducto().getPrecio() * item.getCantidad();
+            subtotal += item.getProducto().getPrecio() * item.getCantidad();
         }
-        System.out.println("Subtotal: " + temp);
-
-        temp = temp * 0.16;
-        System.out.println("IVA: " + temp);
+        System.out.println("Subtotal: " + subtotal);
+        final double iva = subtotal * IVA;
+        System.out.println("IVA: " + iva);
     }
 
     // INLINE TEMP
