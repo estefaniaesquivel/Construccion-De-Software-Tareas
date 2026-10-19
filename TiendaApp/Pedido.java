@@ -59,11 +59,7 @@ public class Pedido {
     // INLINE TEMP
     //Se hizo cambio el return ya que era innecesaria la variable temporal
     public boolean requiereRevision() {
-<<<<<<< HEAD
- 
-=======
 
->>>>>>> 91f54eb1d9fbbce7f32d394f31d98f9a4166aeb7
         return calcularTotal > 5000;
     }
 
