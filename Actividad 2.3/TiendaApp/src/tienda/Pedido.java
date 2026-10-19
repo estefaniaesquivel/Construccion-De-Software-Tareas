@@ -32,6 +32,8 @@ public class Pedido {
         return subtotal;
     }
 
+    private static final double IVA = 0.16;
+
     public double calcularTotal() {
         double subtotal = calcularSubtotal();
         double descuento = 0;
@@ -41,7 +43,7 @@ public class Pedido {
             descuento = subtotal * 0.02;
         }
 
-        return subtotal - descuento + subtotal * 0.16;
+        return subtotal - descuento + subtotal * IVA;
     }
 
     
@@ -50,7 +52,7 @@ public class Pedido {
     Se reemplazó por completo la variable "temp" para utilizar "subtotal" para calcular
     el subtotal e "iva" para calcular el IVA del subtotal
      */
-    private static final double IVA = 0.16;
+    
     public void mostrarResumenImpuestos() {
         double subtotal = 0;
         for (ItemPedido item : items) {
