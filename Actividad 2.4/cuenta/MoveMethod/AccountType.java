@@ -1,3 +1,4 @@
+/*
 public class AccountType {
     private boolean premium;
 
@@ -18,6 +19,8 @@ public class AccountType {
         }
     }
 }
+ */
+
 
 
 /*SIN REFACTORIZACION

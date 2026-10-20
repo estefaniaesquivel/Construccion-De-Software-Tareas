@@ -1,3 +1,4 @@
+/*
 public class Account {
     private AccountType type;
     private int daysOverdrawn;
@@ -15,6 +16,8 @@ public class Account {
         return result;
     }
 }
+
+*/
 
 
 /*  SIN REFACTORIZACION
