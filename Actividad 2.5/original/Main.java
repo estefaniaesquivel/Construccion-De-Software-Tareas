@@ -53,7 +53,7 @@ public class Main {
     p2.monto = 1000;
 
     System.out.println("Caso 2 - descuento: " + p2.calcularDescuento() + "(esperado: 100.0)");
-    System.out.println("Caso 3 - total: " + p2.total() + "esperado: 900.0");
+    System.out.println("Caso 3 - total: " + p2.total() + "(esperado: 900.0)");
     
     //caso 3: ESTANDAR 0%
     Cliente c3 = new Cliente();
