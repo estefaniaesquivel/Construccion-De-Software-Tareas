@@ -66,7 +66,7 @@ public class Main {
         clienteAna.aniosAntiguedad = 6;
 
         Pedido pedidoAna = new Pedido();
-        pedidoAna.asignarCliente(clienteAna); //se cambio
+        pedidoAna.asignarCliente(clienteAna); //se cambio AHORA CUMPLE HIDE DELEGATE
         pedidoAna.monto = 1000;
 
         System.out.println("Caso 1 - descuento: " + pedidoAna.calcularDescuento() + " (esperado: 200.0)");
@@ -79,7 +79,7 @@ public class Main {
         clienteLuis.aniosAntiguedad = 3;
 
         Pedido pedidoLuis = new Pedido();
-        pedidoLuis.asignarCliente(clienteLuis);//se cambio
+        pedidoLuis.asignarCliente(clienteLuis);//se cambio AHORA CUMPLE HIDE DELEGATE
         pedidoLuis.monto = 1000;
 
         System.out.println("Caso 2 - descuento: " + pedidoLuis.calcularDescuento() + "(esperado: 100.0)");
@@ -92,7 +92,7 @@ public class Main {
         clienteMarta.aniosAntiguedad = 10;
 
         Pedido pedidoMarta = new Pedido();
-        pedidoMarta.asignarCliente(clienteMarta);//se cambio
+        pedidoMarta.asignarCliente(clienteMarta);//se cambio AHORA CUMPLE HIDE DELEGATE
         pedidoMarta.monto = 1000;
 
         System.out.println("Caso 3 - descuento: " + pedidoMarta.calcularDescuento() + "(esperado: 0.0)");
