@@ -4,8 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-// [TÉCNICA SUGERIDA] Introduce Local Extension
-// REFACTOR: Extensión local de Date para encapsular operaciones utilitarias sobre fechas.
+//INTRODUCE LOCAL EXTENSION
+//se hizo una extensión local de Date para encapsular operaciones utilitarias sobre fechas
 public class FechaBiblioteca extends Date {
 
     public FechaBiblioteca(long time) {

@@ -16,11 +16,13 @@ public class MainBiblioteca {
         Libro libro = recepcion.consultarLibro("java basico");
         //SE AÑADIO INSTANCIA A LA CLASE TEL
         Telefono telefono = new Telefono("999", "1234567");
-        Socio socio = new Socio("Ana Lopez", "Merida", telefono, 14);
+        //MOVE FIELD
+        Socio socio = new Socio("Ana Lopez", "Merida", telefono);//el atributo diasPrestamo ya no está en socio
         Date fechaPrestamo = new GregorianCalendar(2026, Calendar.OCTOBER, 1).getTime();
         Date fechaDevolucion = new GregorianCalendar(2026, Calendar.OCTOBER, 22).getTime();
        
-        Prestamo prestamo = new Prestamo(libro, socio, fechaPrestamo, fechaDevolucion, 14);
+        //MOVE FIELD
+        Prestamo prestamo = new Prestamo(libro, socio, fechaPrestamo, fechaDevolucion, 14); //diasPrestamo ahora está en el constructor de prestamo
 
         System.out.println("-----------------------------");
         prestamo.imprimirResumen();

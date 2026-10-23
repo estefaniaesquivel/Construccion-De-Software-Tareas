@@ -4,7 +4,6 @@ public class Socio {
     private String nombre;
     private String ciudad;
 
-    private int diasPlazoPrestamo;
     
     // EXTRACT CLASS
     //Se volvió clase TElefono, se borraron los atribtos relacionados a telefono que estaban en socio 
@@ -13,16 +12,14 @@ public class Socio {
     private Telefono telefono;
 
     //MOVE FIELD
-    //Se eliminó el campo 'diasPlazoPrestamo' de Socio ya que pertenecía al contexto de Prestamo.
+    //Se eliminó el campo diasPlazoPrestamo de Socio ya que pertenecía al contexto de Prestamo.
 
-    public Socio(String nombre, String ciudad, Telefono telefono, int diasPlazoPrestamo) {
+    public Socio(String nombre, String ciudad, Telefono telefono) {
         //SE BORRARON LOS THIS DE LOS ATRIBUTOS DEL TEL
         this.nombre = nombre;
         this.ciudad = ciudad;
         this.telefono = telefono; 
-        this.diasPlazoPrestamo = diasPlazoPrestamo;
-        
-        
+
     }
 
     public String getNombre() { 
@@ -37,11 +34,11 @@ public class Socio {
         return telefono; 
     }
 
-    public String obtenerTelefonoCompleto() { // Delega al objeto Telefono
+    public String obtenerTelefonoCompleto() { //delega al objeto Telefono
         return telefono.obtenerTelefonoCompleto();
     }
 
-    public boolean esTelefonoLocal() { // Delega al objeto Telefono
+    public boolean esTelefonoLocal() { //delega al objeto Telefono
         return telefono.esLocal();
     }
 }
