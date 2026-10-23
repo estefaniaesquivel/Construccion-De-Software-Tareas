@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class MainADA2_6 {
+public class MainBiblioteca {
     public static void main(String[] args) {
         Catalogo catalogo = new Catalogo();
         Recepcion recepcion = new Recepcion(catalogo);
