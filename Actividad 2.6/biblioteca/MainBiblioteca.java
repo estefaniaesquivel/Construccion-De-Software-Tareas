@@ -14,15 +14,16 @@ public class MainBiblioteca {
         System.out.println("Libros registrados: " + recepcion.totalLibros());
 
         Libro libro = recepcion.consultarLibro("java basico");
-        //SE AÑADIO INSTANCIA A LA CLASE TEL
+
+        //se puso instancia a la clase tel, EXTRACT CLASS
         Telefono telefono = new Telefono("999", "1234567");
-        //MOVE FIELD
-        Socio socio = new Socio("Ana Lopez", "Merida", telefono);//el atributo diasPrestamo ya no está en socio
+        
+        Socio socio = new Socio("Ana Lopez", "Merida", telefono);//el atributo diasPrestamo ya no está en socio, MOVE FIELD
         Date fechaPrestamo = new GregorianCalendar(2026, Calendar.OCTOBER, 1).getTime();
         Date fechaDevolucion = new GregorianCalendar(2026, Calendar.OCTOBER, 22).getTime();
        
-        //MOVE FIELD
-        Prestamo prestamo = new Prestamo(libro, socio, fechaPrestamo, fechaDevolucion, 14); //diasPrestamo ahora está en el constructor de prestamo
+        
+        Prestamo prestamo = new Prestamo(libro, socio, fechaPrestamo, fechaDevolucion, 14); //diasPrestamo ahora está en el constructor de prestamo,MOVE FIELD
 
         System.out.println("-----------------------------");
         prestamo.imprimirResumen();
