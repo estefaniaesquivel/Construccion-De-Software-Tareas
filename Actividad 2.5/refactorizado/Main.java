@@ -1,3 +1,5 @@
+/*
+ */
 class Cliente {
     String nombre;
     String categoria; // "PREMIUM" o "ESTANDAR"

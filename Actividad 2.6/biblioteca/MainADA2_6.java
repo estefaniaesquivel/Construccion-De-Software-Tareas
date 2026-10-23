@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class Main {
+public class MainADA2_6 {
     public static void main(String[] args) {
         Catalogo catalogo = new Catalogo();
         Recepcion recepcion = new Recepcion(catalogo);
@@ -14,11 +14,13 @@ public class Main {
         System.out.println("Libros registrados: " + recepcion.totalLibros());
 
         Libro libro = recepcion.consultarLibro("java basico");
-        Socio socio = new Socio("Ana Lopez", "Merida", "999", "1234567", 14);
-
+        //SE AÑADIO INSTANCIA A LA CLASE TEL
+        Telefono telefono = new Telefono("999", "1234567");
+        Socio socio = new Socio("Ana Lopez", "Merida", telefono, 14);
         Date fechaPrestamo = new GregorianCalendar(2026, Calendar.OCTOBER, 1).getTime();
         Date fechaDevolucion = new GregorianCalendar(2026, Calendar.OCTOBER, 22).getTime();
-        Prestamo prestamo = new Prestamo(libro, socio, fechaPrestamo, fechaDevolucion);
+       
+        Prestamo prestamo = new Prestamo(libro, socio, fechaPrestamo, fechaDevolucion, 14);
 
         System.out.println("-----------------------------");
         prestamo.imprimirResumen();

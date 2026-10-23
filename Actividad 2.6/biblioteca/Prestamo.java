@@ -1,7 +1,5 @@
 package biblioteca;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 public class Prestamo {
@@ -10,63 +8,59 @@ public class Prestamo {
     private Date fechaPrestamo;
     private Date fechaDevolucion;
 
-    public Prestamo(Libro libro, Socio socio, Date fechaPrestamo, Date fechaDevolucion) {
+    // [TÉCNICA SUGERIDA] Move Field
+    // REFACTOR: Se trasladó el atributo 'diasPlazoPrestamo' desde Socio hacia Prestamo.
+    private int diasPlazoPrestamo;
+
+    public Prestamo(Libro libro, Socio socio, Date fechaPrestamo, Date fechaDevolucion, int diasPlazoPrestamo) {
         this.libro = libro;
         this.socio = socio;
         this.fechaPrestamo = fechaPrestamo;
         this.fechaDevolucion = fechaDevolucion;
+        this.diasPlazoPrestamo = diasPlazoPrestamo;
     }
 
     public Libro getLibro() { return libro; }
     public Socio getSocio() { return socio; }
+    public int getDiasPlazoPrestamo() { return diasPlazoPrestamo; }
 
-    // INTRODUCE FOREIGN METHOD
+    // [TÉCNICA SUGERIDA] Introduce Foreign Method
+    // REFACTOR: Se creó el método auxiliar sumarDias que recibe Date como primer parámetro.
+    private static Date sumarDias(Date fecha, int dias) {
+        return new Date(fecha.getTime() + dias * 24L * 60 * 60 * 1000);
+    }
+
     public Date calcularFechaVencimiento() {
-        return new Date(fechaPrestamo.getTime() + socio.getDiasPlazoPrestamo() * 24L * 60 * 60 * 1000);
+        // Usa directamente el atributo local diasPlazoPrestamo
+        return sumarDias(fechaPrestamo, diasPlazoPrestamo);
     }
 
     public int calcularDiasRetraso() {
-        return diasEntre(calcularFechaVencimiento(), fechaDevolucion);
+        return FechaBiblioteca.diasEntre(calcularFechaVencimiento(), fechaDevolucion);
     }
 
-    // MOVE METHOD
+    // [TÉCNICA SUGERIDA] Move Method
+    // REFACTOR: Se movió la lógica a Libro.java y ahora Prestamo delega la llamada a Libro.
     public double calcularMulta(int diasRetraso) {
-        if (diasRetraso <= 0) {
-            return 0;
-        }
-        double multa = diasRetraso * libro.getMultaPorDia();
-        if (libro.getCategoria().equals("NOVEDAD")) {
-            multa = multa * 2;
-        }
-        if (multa > libro.getValorReposicion()) {
-            multa = libro.getValorReposicion();
-        }
-        return multa;
+        return libro.calcularMulta(diasRetraso);
     }
 
-    // INTRODUCE LOCAL EXTENSION
-    private int diasEntre(Date desde, Date hasta) {
-        double milisPorDia = 24.0 * 60 * 60 * 1000;
-        return (int) Math.round((hasta.getTime() - desde.getTime()) / milisPorDia);
+    // [TÉCNICA SUGERIDA] Hide Delegate
+    // REFACTOR: Métodos delegados para ocultar el objeto Socio a los clientes.
+    public String getCiudadSocio() {
+        return socio.getCiudad();
     }
 
-    private String formatearFecha(Date fecha) {
-        return new SimpleDateFormat("dd/MM/yyyy").format(fecha);
-    }
-
-    private boolean esFinDeSemana(Date fecha) {
-        Calendar calendario = Calendar.getInstance();
-        calendario.setTime(fecha);
-        int dia = calendario.get(Calendar.DAY_OF_WEEK);
-        return dia == Calendar.SATURDAY || dia == Calendar.SUNDAY;
+    public String getTelefonoSocio() {
+        return socio.getTelefono().obtenerTelefonoCompleto();
     }
 
     public void imprimirResumen() {
         System.out.println("Libro: " + libro.getTitulo());
         System.out.println("Socio: " + socio.getNombre());
-        System.out.println("Prestado: " + formatearFecha(fechaPrestamo));
-        System.out.println("Vence: " + formatearFecha(calcularFechaVencimiento()));
-        System.out.println("Vence en fin de semana: " + esFinDeSemana(calcularFechaVencimiento()));
-        System.out.println("Devuelto: " + formatearFecha(fechaDevolucion));
+        System.out.println("Prestado: " + FechaBiblioteca.formatearFecha(fechaPrestamo));
+        System.out.println("Vence: " + FechaBiblioteca.formatearFecha(calcularFechaVencimiento()));
+        System.out.println("Vence en fin de semana: " + FechaBiblioteca.esFinDeSemana(calcularFechaVencimiento()));
+        System.out.println("Devuelto: " + FechaBiblioteca.formatearFecha(fechaDevolucion));
     }
 }
