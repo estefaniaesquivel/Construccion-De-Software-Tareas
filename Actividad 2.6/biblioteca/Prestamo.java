@@ -8,8 +8,8 @@ public class Prestamo {
     private Date fechaPrestamo;
     private Date fechaDevolucion;
 
-    // [TÉCNICA SUGERIDA] Move Field
-    // REFACTOR: Se trasladó el atributo 'diasPlazoPrestamo' desde Socio hacia Prestamo.
+    //MOVE FIELD
+    //Se trasladó el atributo "diasPlazoPrestamo" desde Socio hacia Prestamo.
     private int diasPlazoPrestamo;
 
     public Prestamo(Libro libro, Socio socio, Date fechaPrestamo, Date fechaDevolucion, int diasPlazoPrestamo) {
@@ -24,8 +24,8 @@ public class Prestamo {
     public Socio getSocio() { return socio; }
     public int getDiasPlazoPrestamo() { return diasPlazoPrestamo; }
 
-    // [TÉCNICA SUGERIDA] Introduce Foreign Method
-    // REFACTOR: Se creó el método auxiliar sumarDias que recibe Date como primer parámetro.
+    //INTRODUCE FOREIGN METHOD
+    //se creó el método sumarDias que recibe Date como primer parámetro
     private static Date sumarDias(Date fecha, int dias) {
         return new Date(fecha.getTime() + dias * 24L * 60 * 60 * 1000);
     }
@@ -39,18 +39,18 @@ public class Prestamo {
         return FechaBiblioteca.diasEntre(calcularFechaVencimiento(), fechaDevolucion);
     }
 
-    // [TÉCNICA SUGERIDA] Move Method
-    // REFACTOR: Se movió la lógica a Libro.java y ahora Prestamo delega la llamada a Libro.
+    //MOVE METHOD
+    //Se movió la lógica a Libro.java y ahora Prestamo delega la llamada a Libro
     public double calcularMulta(int diasRetraso) {
         return libro.calcularMulta(diasRetraso);
     }
 
-    // [TÉCNICA SUGERIDA] Hide Delegate
-    // REFACTOR: Métodos delegados para ocultar el objeto Socio a los clientes.
+    //HIDE DELEGATE
+    //método delegado para ocultar el objeto Socio 
     public String getCiudadSocio() {
         return socio.getCiudad();
     }
-
+     //método delegado para ocultar el objeto Socio
     public String getTelefonoSocio() {
         return socio.getTelefono().obtenerTelefonoCompleto();
     }
